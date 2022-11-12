@@ -26,7 +26,7 @@ class bot_container():
         
         #-- movement publisher
         rospy.logdebug(f"setting up move_publisher to /{self.prefix}/{movement_topic}")
-        self.movement_pub = rospy.Publisher(f"/{self.prefix}/cmd_vel", Twist, queue_size=1) 
+        self.movement_pub = rospy.Publisher(f"/{self.prefix}/{movement_topic}", Twist, queue_size=1) 
         #probably unneccessary in real version
         
         
@@ -34,10 +34,10 @@ class bot_container():
         rospy.logdebug(f"setting up odom_subscriber to /{self.prefix}/{odom_topic}")
         
         #---- initial
-        self.current_pose = Odometry()
+        self.current_pose = rospy.wait_for_message(f"/{self.prefix}/{odom_topic}", Odometry)
         
         #---- subscriber
-        rospy.Subscriber(f"/{self.prefix}/odom", Odometry, self.cb_odom)
+        rospy.Subscriber(f"/{self.prefix}/{odom_topic}", Odometry, self.cb_odom)
         
         
         #-- move_base 
