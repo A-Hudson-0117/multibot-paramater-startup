@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-import numpy as np
+
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseStamped, Twist
 from move_base_msgs.msg import MoveBaseActionResult
