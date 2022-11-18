@@ -41,7 +41,7 @@ class bot_container():
         
         
         #-- move_base 
-        rospy.logdebug(f"setting up goal movement control for {self.prefix} (pub:{goal_pub_topic}) (result:{goal_result_topic})")
+        rospy.logdebug(f"setting up goal movement control for {self.prefix}\npub:\t/{self.prefix}/{goal_pub_topic}\nresult:\t/{self.prefix}/{goal_result_topic})")
         
         #---- initial
         self.action_result = MoveBaseActionResult()
@@ -79,6 +79,7 @@ class bot_container():
 
 class test_spawn():
     def __init__(self, num_to_spawn) -> None:
+        """A class to operate the testing when this code is by itself"""
         rospy.init_node("multibot_via_class_test")    
         self.bot_list = list()
 
@@ -97,6 +98,7 @@ class test_spawn():
     
     
     def spin(self):
+        """Spins the robot in the testing conditions"""
         rospy.loginfo("Now spinning (ctrl + c  to close)")
         rospy.spin()
             
